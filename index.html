@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Untuk Anita</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+      background: linear-gradient(to bottom, #fff0f5, #ffe4e1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: radial-gradient(circle at center, rgba(255, 182, 193, 0.2) 0%, transparent 80%);
+      animation: moveBackground 10s linear infinite;
+      z-index: -2;
+    }
+    @keyframes moveBackground {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .container {
+      width: 90%;
+      max-width: 500px;
+      margin: 2rem 0;
+    }
+    .login, .main, .gallery, .letter {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      display: none;
+      animation: fadeIn 1s ease-in-out;
+    }
+    .active {
+      display: block;
+    }
+    input {
+      margin: 1rem 0;
+      padding: 0.5rem;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      background-color: #ff6f91;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+    }
+    button:hover {
+      background-color: #ff3f6e;
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(255, 111, 145, 0.4);
+    }
+    h2, h3 {
+      font-family: 'Great Vibes', cursive;
+      color: #d6336c;
+    }
+    .typewriter {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid pink;
+      animation: typing 4s steps(40, end), blink 0.75s step-end infinite;
+      font-family: 'Pacifico', cursive;
+      font-size: 1.5rem;
+      color: #d6336c;
+      margin-bottom: 1rem;
+    }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+    .section {
+      background-color: #fff0f5;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 8px;
+      text-align: left;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s forwards ease-in-out;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .gallery-grid img,
+    .main img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+    .gallery-grid img:hover,
+    .main img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+    .love-rain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .love {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      transform: rotate(45deg);
+      animation: fall 5s linear infinite;
+    }
+    .love::before, .love::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      border-radius: 50%;
+    }
+    .love::before {
+      top: -10px;
+      left: 0;
+    }
+    .love::after {
+      top: 0;
+      left: -10px;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    audio {
+      display: none;
+    }
+    .stars {
+      background: url('https://www.transparenttextures.com/patterns/stardust.png');
+      background-color: #001f3f;
+      color: white;
+    }
+    #countdown {
+      font-size: 1.2rem;
+      color: #c2185b;
+      margin-bottom: 1rem;
+    }
+    .hidden { display: none; }
+    .letter p strong {
+      background: linear-gradient(to right, #ff6f91, #ffc1cc);
+      padding: 0.1rem 0.4rem;
+      border-radius: 6px;
+      color: white;
+      box-shadow: 0 2px 6px rgba(255, 111, 145, 0.3);
+    }
+    .music-note {
+      position: fixed;
+      font-size: 1.2rem;
+      color: #ff99aa;
+      animation: floatNotes 6s infinite ease-in;
+      pointer-events: none;
+      z-index: 0;
+    }
+    @keyframes floatNotes {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-200px) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="love-rain" id="loveRain"></div>
+  <audio autoplay loop id="bgMusic">
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+  </audio>
+  <div class="container">
+    <div class="login active" id="loginPage">
+      <h2>Login Sayangku</h2>
+      <input type="text" id="username" placeholder="Username" />
+      <input type="password" id="password" placeholder="Password" />
+      <button onclick="login()">Masuk</button>
+    </div>
+    <div class="main" id="mainPage">
+      <img src="assets/WhatsApp Image 2025-06-07 at 19.50.50_25f5241b.jpg" alt="Foto Anita">
+      <div class="typewriter">Saya sayangki ❤️</div>
+      <div id="countdown"></div>
+      <button onclick="tampilkanPesan()">Klik Disini</button>
+      <div class="section hidden" id="pesanSections">
+        <div class="section">
+          <h3>Indah</h3>
+          <p>Indah, namamu bukan cuma panggilan, tapi doa yang membuat hariku selalu penuh cahaya</p>
+        </div>
+        <div class="section">
+          <h3>06 juni 2025</h3>
+          <p>Sejak 6 Juni 2025, setiap hariku jadi lebih indah karena ada kamu</p>
+        </div>
+        <div class="section">
+          <h3>Semoga jodoh</h3>
+          <p>Jika ada satu hal yang ingin kuperjuangkan setiap hari, itu adalah cintamu. Kamu adalah rumah keduaku</p>
+        </div>
+        <button onclick="tampilkanGaleri()">Klik Lagi Lahh</button>
+        <button onclick="kembaliKeMain()">Kembali</button>
+      </div>
+    </div>
+    <div class="gallery stars" id="galleryPage">
+      <h2>Indahh 📸</h2>
+      <div class="gallery-grid">
+        <img src="assets/WhatsApp Image 2025-06-07 at 19.50.51_caba0fb6.jpg" alt="Anita 1">
+        <img src="assets/WhatsApp Image 2025-06-07 at 20.05.10_9e185921.jpg" alt="Anita 2">
+        <img src="assets/WhatsApp Image 2025-06-07 at 20.05.11_47217038.jpg" alt="Anita 3">
+        <img src="assets/WhatsApp Image 2025-06-07 at 20.06.38_53f74244.jpg" alt="Anita 4">
+      </div>
+      <button onclick="tampilkanSurat()">Lanjut Baca Surat 📬</button>
+      <button onclick="kembaliKeMain()">Kembali</button>
+    </div>
+    <div class="letter" id="letterPage">
+      <h2>Surat Untukmu 🌹</h2>
+      <p style="text-align: left; line-height: 1.7;">
+        Kepada Indah, wanita paling indah dalam hidupku...<br><br>
+        Dari sekian banyak detik dalam hidupku, yang paling ku syukuri itu adalah detik ketika hadirki di hidupku. Hadir ta seperti angin yang menenangkan, seperti matahari yang menghangatkan. Setiap tersenyumki, semua masalah dunia seakan tak penting.<br><br>
+        ku tahu mungkin tidak bisa ka selalu bisa sempurna. Tapi untuk sayangki, berjanji ka untuk selalu setia, selalu sabar, dan selalu belajar menjadi lebih baik. Karena kamu layak untuk itu.<br><br>
+        Jangan lupa bahwa kamu dicintai... setiap hari, setiap waktu. 💗<br><br>
+        Dari orang yang sayangki tanpa syarat,
+        <br><br><strong>Afriatsyah Nasra Perdana</strong>
+      </p>
+      <button onclick="kembaliKeGaleri()">Kembali</button>
+    </div>
+  </div>
+  <script>
+    function login() {
+      const user = document.getElementById('username').value;
+      const pass = document.getElementById('password').value;
+      if (user === 'indahh' && pass === '662025') {
+        document.getElementById('loginPage').classList.remove('active');
+        document.getElementById('mainPage').classList.add('active');
+        playLoveRain();
+        startCountdown();
+        spawnMusicNotes();
+      } else {
+        alert('Username atau password salah!');
+      }
+    }
+    function tampilkanPesan() {
+      document.getElementById('pesanSections').classList.remove('hidden');
+    }
+    function tampilkanGaleri() {
+      document.getElementById('mainPage').classList.remove('active');
+      document.getElementById('galleryPage').classList.add('active');
+    }
+    function tampilkanSurat() {
+      document.getElementById('galleryPage').classList.remove('active');
+      document.getElementById('letterPage').classList.add('active');
+    }
+    function kembaliKeMain() {
+      document.getElementById('galleryPage').classList.remove('active');
+      document.getElementById('letterPage').classList.remove('active');
+      document.getElementById('mainPage').classList.add('active');
+    }
+    function kembaliKeGaleri() {
+      document.getElementById('letterPage').classList.remove('active');
+      document.getElementById('galleryPage').classList.add('active');
+    }
+    function playLoveRain() {
+      for (let i = 0; i < 20; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'love';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = (Math.random() * 5 + 3) + 's';
+        document.getElementById('loveRain').appendChild(heart);
+      }
+    }
+    function startCountdown() {
+      const targetDate = new Date('Juni 06, 2026 00:00:00').getTime();
+      const countdown = document.getElementById('countdown');
+      setInterval(() => {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        countdown.innerHTML = `Menuju Hari Spesial: ${days}h ${hours}j ${minutes}m ${seconds}d`;
+      }, 1000);
+    }
+    function spawnMusicNotes() {
+      setInterval(() => {
+        const note = document.createElement("div");
+        note.classList.add("music-note");
+        note.style.left = Math.random() * 100 + "vw";
+        note.style.top = "100vh";
+        note.innerText = "🎵";
+        document.body.appendChild(note);
+        setTimeout(() => note.remove(), 6000);
+      }, 1500);
+    }
+  </script>
+</body>
+</html>
